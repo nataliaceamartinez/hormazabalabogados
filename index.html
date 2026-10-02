@@ -29,7 +29,7 @@
           <a class="nav__link" href="#quienes-somos">Quiénes somos</a>
           <a class="nav__link" href="#contacto">Contacto</a>
         </nav>
-        <a class="btn btn--ghost-amber topbar__cta" href="mailto:mauricio@hormazabalabogados.cl?subject=Agendar%20reuni%C3%B3n">Agendar reunión <span class="arrow" aria-hidden="true"></span></a>
+        <a class="btn btn--ghost-amber topbar__cta" href="#contacto">Agendar reunión <span class="arrow" aria-hidden="true"></span></a>
       </header>
 
       <div class="hero__copy">
@@ -37,7 +37,7 @@
         <hr class="rule">
         <p class="hero__lead">Una mirada sistémica de la regulación<br>permite <span class="c-teal">prevenir riesgos</span> y <span class="c-amber">capturar ventajas</span>.</p>
         <div class="hero__actions">
-          <a class="btn btn--amber" href="mailto:mauricio@hormazabalabogados.cl?subject=Agendar%20reuni%C3%B3n">Agendar reunión <span class="arrow" aria-hidden="true"></span></a>
+          <a class="btn btn--amber" href="#contacto">Agendar reunión <span class="arrow" aria-hidden="true"></span></a>
           <a class="btn btn--outline" href="#enfoque">Conoce nuestro enfoque <span class="arrow arrow--teal" aria-hidden="true"></span></a>
         </div>
       </div>
@@ -203,12 +203,35 @@
     <div class="cta__bg cta__bg--r" aria-hidden="true"></div>
 
     <div class="wrap cta__wrap">
-      <img class="cta__icon" src="assets/icons/question.png" alt="">
-      <div class="cta__copy">
-        <h2 class="cta__title">¿Te has preguntado si tu problema<br>requiere mirar más de una regulación?</h2>
-        <p class="cta__sub">La interacción entre regulaciones implica <span class="c-teal">riesgos</span><br>y <span class="c-amber">oportunidades.</span></p>
+      <div class="cta__intro">
+        <img class="cta__icon" src="assets/icons/question.png" alt="">
+        <div class="cta__copy">
+          <h2 class="cta__title">¿Te has preguntado si tu problema<br>requiere mirar más de una regulación?</h2>
+          <p class="cta__sub">La interacción entre regulaciones implica <span class="c-teal">riesgos</span><br>y <span class="c-amber">oportunidades.</span></p>
+        </div>
       </div>
-      <a class="btn btn--amber btn--lg" href="mailto:mauricio@hormazabalabogados.cl?subject=Agendar%20reuni%C3%B3n">Agendar reunión <span class="arrow" aria-hidden="true"></span></a>
+
+      <form class="contact-form" id="contact-form" action="https://formspree.io/f/xyezqrvg" method="POST">
+        <div class="contact-form__row">
+          <label>Nombre
+            <input type="text" name="nombre" autocomplete="name" required>
+          </label>
+          <label>Correo
+            <input type="email" name="email" autocomplete="email" required>
+          </label>
+        </div>
+        <label>Teléfono <span class="contact-form__optional">(opcional)</span>
+          <input type="tel" name="telefono" autocomplete="tel">
+        </label>
+        <label>Mensaje
+          <textarea name="mensaje" rows="4" required></textarea>
+        </label>
+        <input type="text" name="_gotcha" class="contact-form__hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="contact-form__actions">
+          <button class="btn btn--amber btn--lg" type="submit">Enviar mensaje <span class="arrow" aria-hidden="true"></span></button>
+          <p class="contact-form__status" id="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
     </div>
 
     <footer class="footer">
@@ -220,5 +243,34 @@
     </footer>
   </section>
 
+  <script>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const button = form.querySelector('button[type="submit"]');
+      const original = button.innerHTML;
+      button.disabled = true;
+      button.textContent = 'Enviando…';
+      status.textContent = '';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!response.ok) throw new Error('No se pudo enviar');
+        form.reset();
+        status.textContent = 'Mensaje enviado. Gracias por contactarnos.';
+        status.className = 'contact-form__status is-success';
+      } catch (error) {
+        status.textContent = 'No pudimos enviar el mensaje. Intenta nuevamente.';
+        status.className = 'contact-form__status is-error';
+      } finally {
+        button.disabled = false;
+        button.innerHTML = original;
+      }
+    });
+  </script>
 </body>
 </html>
