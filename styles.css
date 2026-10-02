@@ -458,3 +458,78 @@ section{position:relative;width:100%;border-top:1px solid var(--line)}
     transform:translateY(-50%);
   }
 }
+
+
+/* =========================================================
+   CORRECCIÓN FINAL — fuerza exactamente la composición aprobada
+   ========================================================= */
+@media (min-width:1024px){
+
+  /* Texto: más ancho para evitar el efecto apretado */
+  .cta .cta__wrap{
+    grid-template-columns: 38rem minmax(0, 1fr) !important;
+    gap: 3.4rem !important;
+    padding-left: 4.8rem !important;
+    padding-right: 4.8rem !important;
+  }
+
+  .cta .cta__intro{
+    padding-left: 6.5rem !important;
+  }
+
+  .cta .cta__title{
+    width: 31rem !important;
+    max-width: 31rem !important;
+    font-size: 2.05rem !important;
+    line-height: 1.18 !important;
+  }
+
+  .cta .cta__title br{
+    display:none !important;
+  }
+
+  .cta .cta__sub{
+    width:31rem !important;
+    max-width:31rem !important;
+    font-size:1.55rem !important;
+    line-height:1.22 !important;
+  }
+
+  /* Footer: el bloque completo se centra respecto de TODA la página */
+  .footer .footer__wrap{
+    width:max-content !important;
+    max-width:calc(100% - 4rem) !important;
+    height:100% !important;
+    margin:0 auto !important;
+    padding:0 !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:3rem !important;
+    position:relative !important;
+  }
+
+  .footer .footer__wrap > .contact{
+    position:relative !important;
+    inset:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+    height:100% !important;
+    flex:none !important;
+  }
+
+  .footer .footer__wrap > .contact + .contact{
+    margin-left:1.2rem !important;
+  }
+
+  .footer .footer__wrap > .contact + .contact::before{
+    content:"" !important;
+    position:absolute !important;
+    left:-2.15rem !important;
+    top:50% !important;
+    width:1px !important;
+    height:1.55rem !important;
+    background:#647181 !important;
+    transform:translateY(-50%) !important;
+  }
+}
