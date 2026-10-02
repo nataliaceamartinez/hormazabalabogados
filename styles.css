@@ -346,3 +346,36 @@ section{position:relative;width:100%;border-top:1px solid var(--line)}
   .footer__wrap{height:auto;display:flex;flex-direction:column;gap:1.2rem;padding:0 2rem}
   .contact{position:static;height:auto;font-size:1.4rem;word-break:break-word}
 }
+
+/* ==========================================================================\n   FORMULARIO DE CONTACTO\n   ========================================================================== */
+.cta{height:auto;min-height:43rem;padding-bottom:2.7rem;overflow:hidden}
+.cta__wrap{height:auto;min-height:40.3rem;padding:3.3rem 3.3rem 4rem;display:grid;grid-template-columns:31rem 1fr;gap:5rem;align-items:start}
+.cta__intro{position:relative;padding-left:6.5rem}
+.cta__intro .cta__icon{position:absolute;left:0;top:.2rem}
+.cta__intro .cta__copy{position:static;width:auto}
+.cta .contact-form{width:100%;display:flex;flex-direction:column;gap:1.35rem}
+.contact-form__row{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem}
+.contact-form label{display:flex;flex-direction:column;gap:.55rem;color:var(--text-soft);font-size:1.18rem;text-transform:uppercase;letter-spacing:.035em}
+.contact-form__optional{color:#8d99a8;text-transform:none;letter-spacing:0;font-size:1.05rem}
+.contact-form input,.contact-form textarea{width:100%;border:1px solid #344354;border-radius:.3rem;background:#06182b;color:var(--white);font:400 1.35rem/1.4 var(--font);padding:1rem 1.15rem;outline:none;transition:border-color .2s ease,box-shadow .2s ease}
+.contact-form input{height:4.1rem}
+.contact-form textarea{min-height:8.5rem;resize:vertical}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--teal);box-shadow:0 0 0 2px rgba(47,188,199,.12)}
+.contact-form__actions{display:flex;align-items:center;gap:1.6rem;margin-top:.3rem}
+.cta .contact-form .btn--lg{position:static;width:auto;min-width:17rem;border:0;cursor:pointer;font-family:var(--font)}
+.contact-form button:disabled{opacity:.65;cursor:wait}
+.contact-form__status{font-size:1.2rem;line-height:1.5}
+.contact-form__status.is-success{color:var(--teal)}
+.contact-form__status.is-error{color:var(--amber)}
+.contact-form__hp{position:absolute!important;left:-9999px!important;width:1px!important;height:1px!important;opacity:0!important}
+
+@media (max-width:1023px){
+  .cta{padding-bottom:0}
+  .cta__wrap{display:flex;flex-direction:column;gap:2.6rem;min-height:0;padding:3rem 2rem}
+  .cta__intro{padding-left:0}
+  .cta__intro .cta__icon{position:static;margin-bottom:1.5rem}
+  .contact-form__row{grid-template-columns:1fr}
+  .contact-form label{font-size:1.3rem}
+  .contact-form input,.contact-form textarea{font-size:1.6rem}
+  .contact-form__actions{align-items:flex-start;flex-direction:column}
+}
